@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>text</title>
+<script>
+window.onload = function() {
+  function getTime(format) {
+    let myDate = new Date();
+    let year = myDate.getFullYear(); //获取当前年
+    let mon = myDate.getMonth() + 1; //获取当前月
+    let date = myDate.getDate(); //获取当前日
+    let h = myDate.getHours(); //获取当前小时数(0-23)
+    let m = myDate.getMinutes(); //获取当前分钟数(0-59)
+    let s = myDate.getSeconds(); //获取当前秒
+    let week = myDate.getDay();
+    let weeks = ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"];
+    let txt = "";
+      switch (format) {
+        //年月日 yyyy-mm-dd
+        case "ymd":
+          txt = `${[year, mon, date].map(formatNumber).join("-")}`
+          break;
+        //时分秒 hh:mm:ss
+        case "hms":
+          txt = `${[h, m, s].map(formatNumber).join(":")}`
+          break;
+        //年月日时分秒 yyyy-mm-dd hh:mm:ss
+        case "ymdhms":
+          txt = `${[year, mon, date].map(formatNumber).join("-")} ${[h, m, s].map(formatNumber).join(":")}`
+          break;
+        //年月日时分秒星期
+        case "all":
+          txt = `${[year, mon, date].map(formatNumber).join("-")} ${[h, m, s].map(formatNumber).join(":")} ${weeks[week]}`
+          break;
+      }
+    return txt
+  }
+
+  // 不足两位数前面补0
+  function formatNumber(n) {
+    // n = n.toString();
+    // return n[1] ? n : "0" + n;
+    // padStart()用于头部补全，padEnd()用于尾部补全，第一个参数用来指定字符串的最小长度，第二个参数是用来补全的字符串
+    return n.toString().padStart(2, '0')
+  }
+
+  // console.log('getTime', getTime('all'))
+  function showTime() {
+    document.getElementById('time').innerHTML = getTime('all');
+  }
+  setInterval(() => {
+    showTime();
+  }, 1000);
+  
+}
+</script>
+<style>
+/* 
+  LCD液晶字体 
+  https://blog.csdn.net/qq_41619796/article/details/87784150
+  https://blog.csdn.net/sunshine_han/article/details/78258880
+  .ttf转化为.woff https://onlineconvertfree.com/zh/complete/ttf-woff/
+*/
+@font-face {
+  font-family: "wwDigital";
+  src: url("./font/wwDigital.woff"); /***兼容ie9***/
+  font-weight: normal;
+  font-style: normal;
+}
+.time {
+  font-family: "wwDigital";
+}
+</style>
+</head>
+<body>
+  <div id="time" class="time"></div>
+</body>
+</html>
