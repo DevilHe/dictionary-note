@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS布局-元素居中</title>
+</head>
+<style>
+ul {
+  list-style: none;
+  margin: 0;
+}
+ul li {
+  margin: 16px;
+  float: left;
+}
+
+/* 1.利用定位 */
+.li-1 .content {
+  width: 200px;
+  height: 200px;
+  border: 1px solid #999;
+  position: relative;
+}
+.li-1 .content .box {
+  width: 100px;
+  height: 60px;
+  background: #00f;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
+/* 2.定位配合CSS3位移 */
+.li-2 .content {
+  width: 200px;
+  height: 200px;
+  border: 1px solid #999;
+  position: relative;
+}
+.li-2 .content .box {
+  width: 100px;
+  height: 60px;
+  background: #0ff;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* 3.利用内联块元素display: inline-block */
+.li-3 .content {
+  width: 200px;
+  height: 200px;
+  border: 1px solid #999;
+  text-align: center;
+}
+.li-3 .content::before {
+  content: '';
+  width: 0;
+  height: 100%;
+  display: inline-block;
+  vertical-align: middle;
+}
+.li-3 .content .box {
+  width: 100px;
+  height: 60px;
+  background: #0f0;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+/* 4.弹性盒模型 */
+.li-4 .content {
+  width: 200px;
+  height: 200px;
+  border: 1px solid #999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.li-4 .content .box {
+  width: 100px;
+  height: 60px;
+  background: #ff0;
+}
+
+/* 5.网格布局Grid */
+.li-5 .content {
+  width: 200px;
+  height: 200px;
+  border: 1px solid #999;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+}
+.li-5 .content .box {
+  width: 100px;
+  height: 60px;
+  background: #f0f;
+}
+</style>
+<body>
+  <ul>
+    <li class="li-1">
+      <div class="title">1.利用定位</div>
+      <div class="content">
+        <div class="box"></div>
+      </div>
+    </li>
+    <li class="li-2">
+      <div class="title">2.定位配合CSS3位移</div>
+      <div class="content">
+        <div class="box"></div>
+      </div>
+    </li>
+    <li class="li-3">
+      <div class="title">3.利用内联块元素display: inline-block</div>
+      <div class="content">
+        <div class="box"></div>
+      </div>
+    </li>
+    <li class="li-4">
+      <div class="title">4.弹性盒模型</div>
+      <div class="content">
+        <div class="box"></div>
+      </div>
+    </li>
+    <li class="li-5">
+      <div class="title">5.网格布局Grid</div>
+      <div class="content">
+        <div class="box"></div>
+      </div>
+    </li>
+  </ul>
+  
+</body>
+</html>
