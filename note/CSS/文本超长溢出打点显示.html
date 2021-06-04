@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>文本超长溢出打点显示</title>
+<style>
+html, body {
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+div {
+  margin: auto;
+  width: 300px;
+  height: 150px;
+  border: 2px solid #999;
+  padding: 10px;
+}
+h4 {
+  margin: 0;
+}
+.tag {
+  background: chartreuse;
+  padding: 2px 4px;
+  margin: 0 4px;
+  border-radius: 4px;
+}
+
+/* 单行文本 */
+.g-container .one-line {
+  width: 300px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* 多行文本 */
+.g-container .more-line {
+  width: 300px;
+  overflow : hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+/* 超长文本整块省略 */
+.tag-one-line {
+  width: 300px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+/* 将包裹整块标签元素的 span 的 display 由 inline 改为 inline-block 即可 */
+.tag-one-line-inlineblock .tag {
+  display: inline-block;
+}
+
+/* iOS和Safari不支持整块超长溢出打点省略解决 */
+/* 将多行省略的代码替换单行省略，只是行数 -webkit-line-clamp: 2 改成一行即可 -webkit-line-clamp: 1 */
+/* 值得注意的是，在使用 -webkit-line-clamp 的方案的时候，一定要配合 white-space: normal 允许换行，而不是不换行。这一点，非常重要。
+当然， -webkit-line-clamp 本身也是存在一定的兼容性问题的，实际使用的时候还需要具体去取舍。 */
+.ios-one-line {
+  width: 300px;
+  white-space: normal;
+  overflow : hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+.ios-one-line .tag {
+  display: inline-block;
+}
+</style>
+</head>
+<body>
+  <div class="g-container">
+    <h4>一.单行文本</h4>
+    <p class="one-line">测试数据测试数据测试数据测试数据测试数据测试数据测试数据测试数据测试数据测试数据测试数据</p>
+  </div>
+
+  <div class="g-container">
+    <h4>二.多行文本</h4>
+    <p class="more-line">测试数据测试数据测试数据测试数据测试数据测试数据测试数据测试数据测试数据测试数据测试数据</p>
+  </div>
+
+  <div class="g-container">
+    <h4>超长文本整块省略-不是想要的效果</h4>
+    <p class="tag-one-line">测试数据<span class="tag">标签一</span><span class="tag">标签二</span><span class="tag">标签三</span><span class="tag">标签四</span></p>
+    <h4>三.超长文本整块省略-想要的效果</h4>
+    <!-- iOS和Safari不兼容 -->
+    <p class="tag-one-line tag-one-line-inlineblock">测试数据<span class="tag">标签一</span><span class="tag">标签二</span><span class="tag">标签三</span><span class="tag">标签四</span></p>
+  </div>
+
+  <div class="g-container">
+    <h4>在iOS和Safari中三效果模拟</h4>
+    <p style="width: 300px;overflow: hidden;white-space: nowrap;">测试数据<span class="tag">标签一</span><span class="tag">标签二</span><span class="tag">标签三</span><span class="tag">标签四</span></p>
+    <h4>四.超长文本整块省略(兼容iOS和Safari)</h4>
+    <p class="ios-one-line">测试数据<span class="tag">标签一</span><span class="tag">标签二</span><span class="tag">标签三</span><span class="tag">标签四</span></p>
+  </div>
+  <!-- 参考链接：https://juejin.cn/post/6938583040469762055?utm_source=gold_browser_extension -->
+</body>
+</html>
