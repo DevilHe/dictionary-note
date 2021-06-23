@@ -479,3 +479,53 @@ const num = +"1000";
 console.log(num, typeof num) // 1000 "number"
 
 ```
+
+##### 26.区间随机数
+
+有时需要在一个范围内生成一个随机数。该 Math.random()函数可以生成一个随机数，然后，可以将其转换为我们想要的范围。
+
+```
+const randomIntFromInterval = (min, max) => Math.floor(Math.random() * (max - min + 1) + min);
+console.log('randomIntFromInterval', randomIntFromInterval(1, 9))
+
+```
+
+##### 27.动态属性名称
+
+ES6 提供动态属性名称，允许对象字面量的属性键使用表达式。通过用括号包围键[]，可以使用变量作为属性键。
+这个在希望动态创建秘钥的情况下很有用
+
+```
+const type = 'fruit';
+const item = {
+  [type]: 'kiwi'
+}
+console.log(item) // {fruit: "kiwi"}
+
+// 这个在希望动态创建秘钥的情况下很有用
+// 我们可以使用括号表示法访问该值
+item[type]; // 'kiwi'
+item['fruit']; // 'kiwi'
+
+// 或使用点符号
+item.fruit; // 'kiwi'
+
+```
+
+##### 28.ES6 扩展运算符和 slice
+
+如果我们想在不改变原数组的情况下向数组添加一个新项目（通常希望避免这种情况），可以使用 ES6 扩展运算符和 slice 创建一个新数组。
+
+```
+const insert = (arr, index, newItem) => [
+  ...arr.slice(0, index),
+  newItem,
+  ...arr.slice(index)
+]
+
+const items = ['S', 'L', 'C', 'E'];
+const result = insert(items, 2, 'I');
+console.log(items, result)
+// ["S", "L", "C", "E"]   ["S", "L", "I", "C", "E"]
+
+```
