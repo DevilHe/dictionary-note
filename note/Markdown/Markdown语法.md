@@ -235,6 +235,10 @@ Markdown 区块引用是在段落开头使用 > 符号 ，然后后面紧跟一�
 
 `printf()` 函数
 
+### 代码区块
+
+代码区块使用 4 个空格或者一个制表符（Tab 键）。
+
     <?php
     echo 'xx';
     function test() {
@@ -249,15 +253,76 @@ $(document).ready(function () {
 });
 ```
 
-### 代码区块
-
-代码区块使用 4 个空格或者一个制表符（Tab 键）。
-
 ## 六、Markdown 链接
+
+[链接名称](链接地址)
+
+或者
+
+<链接地址>
+
+例如：这是一个链接 [百度](https://www.baidu.com)或<https://www.baidu.com>
+
+### 高级链接
+
+我们可以通过变量来设置一个链接，变量赋值在文档末尾进行：
+这个链接用 1 作为网址变量 [Google][1]
+这个链接用 runoob 作为网址变量 [Runoob][runoob]
+然后在文档的结尾为变量赋值（网址）
+
+[1]: http://www.google.com/
+[runoob]: http://www.runoob.com/
 
 ## 七、Markdown 图片
 
+Markdown 图片语法格式如下：
+![alt 属性文本](图片地址)
+
+![alt 属性文本](图片地址 "可选标题")
+
+开头一个感叹号 !
+接着一个方括号，里面放上图片的替代文字
+接着一个普通括号，里面放上图片的网址，最后还可以用引号包住并加上选择性的 'title' 属性的文字。
+
+使用实例：
+
+![RUNOOB 图标](http://static.runoob.com/images/runoob-logo.png)
+
+![RUNOOB 图标](http://static.runoob.com/images/runoob-logo.png "RUNOOB")
+
+当然，你也可以像网址那样对图片网址使用变量:
+这个链接用 1 作为网址变量 [RUNOOB][1].
+然后在文档的结尾为变量赋值（网址）
+
+[1]: http://static.runoob.com/images/runoob-logo.png
+
+Markdown 还没有办法指定图片的高度与宽度，如果你需要的话，你可以使用普通的 <img> 标签。
+
+<img src="http://static.runoob.com/images/runoob-logo.png" width="50%">
+
 ## 八、Markdown 表格
+
+Markdown 制作表格使用 | 来分隔不同的单元格，使用 - 来分隔表头和其他行。
+
+语法格式如下：
+
+| 表头   | 表头   |
+| ------ | ------ |
+| 单元格 | 单元格 |
+| 单元格 | 单元格 |
+
+对齐方式
+
+我们可以设置表格的对齐方式：
+
+-: 设置内容和标题栏居右对齐。
+:- 设置内容和标题栏居左对齐。
+:-: 设置内容和标题栏居中对齐。
+
+| 左对齐 | 右对齐 | 居中对齐 |
+| :----- | -----: | :------: |
+| 单元格 | 单元格 |  单元格  |
+| 单元格 | 单元格 |  单元格  |
 
 ## 九、Markdown 高级技巧
 
@@ -269,7 +334,3 @@ A[方形] -->B(圆角)
     C -->|a=2| E[结果2]
     F[横向流程图]
 ```
-
-> 区块引用
-> 菜鸟教程
-> 学的不仅是技术更是梦想
