@@ -268,6 +268,21 @@ numbers.forEach(number => console.log(number));
 
 ```
 
+for of 对 for 循环简写
+
+```
+let song = ['eenine', 'meenie', 'miney', 'mo'];
+// LONGER FORM
+for(let i=0;i<song.length;i++) {
+  console.log(song[i]);
+}
+// SHORTHAND
+for(const word of song) {
+  console.log(word);
+}
+
+```
+
 ##### 15.函数参数的默认值
 
 在 JavaScript 中，可以为函数参数提供默认值，以便可以带或不带参数调用函数
@@ -471,7 +486,8 @@ Math.floor(5.25) // 5.0
 
 ```
 // LONGER FORM
-// const num = parseInt("1000");
+const num = parseInt("1000");
+const num = Number("1000");
 
 // SHORTHAND
 const num = +"1000";
@@ -527,5 +543,94 @@ const items = ['S', 'L', 'C', 'E'];
 const result = insert(items, 2, 'I');
 console.log(items, result)
 // ["S", "L", "C", "E"]   ["S", "L", "I", "C", "E"]
+
+```
+
+##### 29.十进制基数
+
+e 后面的数字代表 1 后面 0 的个数
+
+```
+// LONGER FORM
+for(let i=0;i<1000000;i++) {
+  console.log('I love my cat!');
+}
+
+// SHORTHAND
+for(let i=0;i<1e2;i++) {
+  console.log('I love my cat!');
+}
+
+```
+
+##### 30.反引号``模板文字${}
+
+```
+let poem_name = 'Baba Black Sheep';
+console.log(`My favorite poem is ${poem_name}`);
+
+const msg_to_cat = 'You are the best cat in the whole world.\n' + 'You are the best cat in the whole world.';
+const msg_to_dog = `You are the goodest boy ever.
+You are the goodest boy ever.`;
+
+```
+
+##### 31.默认参数
+
+```
+const sum_genetator = (a, b=10) => a + b;
+console.log('sum_genetator', sum_genetator(2)); // 12
+console.log('sum_genetator', sum_genetator(2, undefined)); // 12
+console.log('sum_genetator', sum_genetator(2, 4)); // 6
+
+```
+
+##### 32.强制性参数
+
+```
+const error_handler = (property) => {
+  throw new Error(`Error: ${property} is required!`);
+}
+const monitor_roads = (car = error_handler('Car'), speed = error_handler('Speed')) => {
+  console.log(`Your ${car} was going at a speed of ${speed}mph.`);
+}
+monitor_roads('Ferrari', 240); // Your Ferrari was going at a speed of 240mph.
+monitor_roads('Ferrari'); // Error: Speed is required!
+
+```
+
+##### 32.对象键、对象值
+
+Object.keys()迭代对象获取键名，Object.values()获取对象值
+
+```
+let cat = {
+  name: 'Jimmy boy',
+  age: 5,
+  breed: 'British Shorthair',
+  favorite_word: 'Meow',
+  favorite_food: 'Chimkens'
+}
+console.log(Object.keys(cat)); // ["name", "age", "breed", "favorite_word", "favorite_food"]
+console.log(Object.values(cat)); // ["Jimmy boy", 5, "British Shorthair", "Meow", "Chimkens"]
+
+```
+
+##### 32.字符串比较
+
+数组去重，localeCompare
+
+```
+let names = ['Aron', 'Elon', 'Tom', 'Tom'];
+let result = [];
+const remove_dupes = arr => {
+  for(let i=0;i<arr.length;i++) {
+    if(arr[i].localeCompare(arr[i+1]) != 0) {
+      result.push(arr[i]);
+    }
+  }
+  return result;
+}
+console.log('remove_dupes', remove_dupes(names))
 
 ```
