@@ -634,3 +634,40 @@ const remove_dupes = arr => {
 console.log('remove_dupes', remove_dupes(names))
 
 ```
+
+##### 33.根据给定 key 值获取数组对象的 value 值
+
+```
+let operationTypes = [
+  {
+    value: "read",
+    label: "读取",
+  },
+  {
+    value: "write",
+    label: "写入",
+  },
+  {
+    value: "edit",
+    label: "编辑",
+  },
+  {
+    value: "delete",
+    label: "删除",
+  },
+]
+function changeType(type) {
+  let arr = type.split(",");
+  let typeArr = [];
+  if (arr.length > 0) {
+    for (let i = 0; i < arr.length; i++) {
+      const item = operationTypes.find((v) => v.value === arr[i]);
+      typeArr.push(item.label);
+    }
+  }
+  return typeArr.join("/");
+}
+console.log('changeType', changeType('write,delete'))
+// 写入/删除
+
+```
